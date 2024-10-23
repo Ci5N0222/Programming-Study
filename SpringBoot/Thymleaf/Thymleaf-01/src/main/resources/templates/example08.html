@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- 이 페이지는 타임리프를 사용하는 페이지이다 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+</head>
+<body>
+    <h1 th:text="${nationality}">Example08</h1>
+    <!-- [[ 사용 시 임의의 위치에서 직접 사용하며, {}안에서는 연산도 가능 -->
+    <h1>[[${nationality}]]</h1>
+    <hr>
+    <table border="1">
+        <tr align="center">
+            <th>Name</th>
+            <th>Age</th>
+            <th>Nationality</th>
+            <th>TodayFeel</th>
+        </tr>
+        <tr align="center">
+            <!-- example 이라는 vo에 있는 2개의 속성 -->
+            <td th:text="${example.name}">name</td>
+            <td th:text="${example.age}">age</td>
+            <td th:text="${nationality}">2</td>
+            <td th:text="${todayFeel}">3</td>
+        </tr>
+
+        <!-- 반복되는 객체는 object로 분리 가능 -->
+        <tr th:object="${example}" align="center">
+            <!-- example 이라는 vo에 있는 2개의 속성 -->
+            <td th:text="*{name}">name</td>
+            <td th:text="*{age}">age</td>
+            <td th:text="${nationality}">nationality</td>
+            <td th:text="${todayFeel}">3</td>
+        </tr>
+    </table>
+    <br><br>
+
+    <table border="1">
+        <!-- 리스트는 여러 건이기 때문에 Loop( 반복 )가 필요 -->
+        <!-- 마땅히 묶을 것이 없다면 th:block 이용 -->
+        <!-- PersonList에서 하나를 꺼내어 person에 넣고 수행 -->
+        <!-- Java의 enhanced for와 유사하며 대소문자를 철저하게 구분 -->
+        <th:block th:each="person : ${list}"> <!-- 여러 개의 vo -->
+            <tr th:object="${person}"> <!-- vo한 개당 한 줄 -->
+               <td th:text="*{name}"></td>
+                <td th:text="*{age}"></td>
+            </tr>
+            <tr> <!-- vo한 개당 한 줄 -->
+                <td th:text="${person.name}"></td>
+                <td th:text="${person.age}"></td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+</html>

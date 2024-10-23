@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+
 @Controller
 @RequestMapping("/ex/*")    // localhost:10000/xe 는 다 이 컨트롤러에서 처리
 @Slf4j
@@ -95,11 +97,35 @@ public class ExampleController {
     // 상자를 만들려면 클래스를 선언해야 하는데, 재사용 가능성 X
     // 여러 묶음의 데이터를 HTML에 보내는 방법( @Model )
     @GetMapping("/08")
-    public void example08(Model model) {
+    public String example08(Model model) {
         ExampleVo vo = new ExampleVo();
         vo.setName("James Bond");
         vo.setAge(50);
 
         model.addAttribute("example", vo);
+        model.addAttribute("todayFeel", "Good");
+        model.addAttribute("nationality", "Korea");
+
+        ArrayList list = new ArrayList();
+        ExampleVo vo1 = new ExampleVo();
+        ExampleVo vo2 = new ExampleVo();
+        ExampleVo vo3 = new ExampleVo();
+
+        vo1.setName("Merry");
+        vo1.setAge(11);
+
+        vo2.setName("Mr.President");
+        vo2.setAge(60);
+
+        vo3.setName("The King");
+        vo3.setAge(1000);
+
+        list.add(vo1);
+        list.add(vo2);
+        list.add(vo3);
+
+        model.addAttribute("list", list);
+
+        return "example08.html";
     }
 }
