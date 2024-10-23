@@ -5,10 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -127,5 +124,14 @@ public class ExampleController {
         model.addAttribute("list", list);
 
         return "example08.html";
+    }
+
+    @GetMapping("/09")
+    @ResponseBody
+    public String[] example09(String name){
+
+        String[] result = {"AAA", "BBB", "CCC"};
+
+        return result;
     }
 }
