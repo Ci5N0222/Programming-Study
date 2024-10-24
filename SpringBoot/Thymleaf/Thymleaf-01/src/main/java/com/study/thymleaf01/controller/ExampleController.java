@@ -125,7 +125,7 @@ public class ExampleController {
 
         return "example08.html";
     }
-
+ 
     @GetMapping("/09")
     @ResponseBody
     public String[] example09(String name){
