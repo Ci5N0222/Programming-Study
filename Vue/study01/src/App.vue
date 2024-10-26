@@ -23,7 +23,7 @@ export default {
   name: 'App',
   data(){
     return {
-      // 데이터를 오브젝트 형식으로 보관 { 키 : 값 }
+      // 데이터를 오브젝트 형식으로 보관 { 키 : 값 } 
       price1: 50,
       price2: 70,
       style: "color : blue",
