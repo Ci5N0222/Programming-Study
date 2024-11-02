@@ -38,7 +38,7 @@
   
     <div class="product" v-for="(product, i) in products" :key="i">
       <!-- src에 있는 파일 가져올 때 ./ 시작 -->
-      <img  src="./assets/images/room0.jpg" />
+      <img  :src="images[i]" alt="Product Image" />
       <h4 @click="isModal = !isModal">{{ product }}</h4>
       <p>{{ prices[i] }} 만원</p>
       <!-- Vue onClick Event -->
@@ -62,6 +62,7 @@ export default {
       products : ["역삼동 원룸", "천호동 원룸", "마포구 원룸"],
       prices : [100, 150, 200],
       menus : ["Home", "Shop", "About"],
+      images : ["/images/room0.jpg", "/images/room1.jpg", "/images/room2.jpg"],
       reports: [1, 2, 3],
       isModal : false
     }
@@ -87,11 +88,19 @@ div {
 }
 
 .product {
+  max-width: 700px;
   border: 1px solid black;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
+  margin: 10px;
   padding: 10px;
   align-items: center;
+}
+
+.product > img {
+  width: 100%;
+  max-width: 500px;
 }
 
 .product > h4:hover {
