@@ -35,19 +35,19 @@
   <!-- 데이터 바인딩 : {{ 변수 }} -->
   <!-- <h2 :style="style">{{ title }}</h2> -->
 
-  <!-- src에 있는 파일 가져올 때 ./ 시작 -->
-  <img src="./assets/images/room0.jpg" />
-
-  <div>
-    <template v-for="(product, i) in products" :key="i">
+  
+    <div class="product" v-for="(product, i) in products" :key="i">
+      <!-- src에 있는 파일 가져올 때 ./ 시작 -->
+      <img  src="./assets/images/room0.jpg" />
       <h4 @click="isModal = !isModal">{{ product }}</h4>
       <p>{{ prices[i] }} 만원</p>
       <!-- Vue onClick Event -->
-      <button @click="reportEvent(i)"> 허위매물 신고 </button>
-      <span> {{ reports[i] }} </span>
-    </template>
+      <div class="report">
+        <button @click="reportEvent(i)"> 허위매물 신고 </button>
+        <span> {{ reports[i] }} </span>
+      </div>
   </div>
-  
+
 </template>
 
 <script>
@@ -86,6 +86,29 @@ div {
   box-sizing: border-box;
 }
 
+.product {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  align-items: center;
+}
+
+.product > h4:hover {
+  cursor: pointer;
+  scale: 1.1;
+  color: orange;
+}
+
+.product > .report {
+  display: flex;
+  gap: 10px;
+}
+
+.main-banner {
+  width: 100%;
+}
+
 .black-bg {
   width: 100%;
   height: 100%;
@@ -104,12 +127,12 @@ div {
 .menu {
   background-color: darkslateblue;
   padding: 15px;
-  border-radius: 5px;
 }
 
 .menu a {
   color: white;
-  padding: 10px
+  padding: 10px;
+  font-weight: 700;
 }
 
 
