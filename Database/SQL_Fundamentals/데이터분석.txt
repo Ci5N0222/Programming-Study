@@ -1,0 +1,15 @@
+# SQL
+    - RDBMS 에 접근하는 기술
+
+# 분석 SQL
+    - 원본 데이터를 원하는 집합의 레벨로 자유자재로 가공하고 만들어 낼 수 있는 능력을 갖춰야 함
+    - 다양한 유형의 조인 및 Group by와 집계 함수 그리고 Analytic SQL이 동작하는 메커니즘을 이해하면서
+      SQL을 작성한느 능력을 키워야 함
+        . Join
+        . Group by
+        . Analytic SQL
+
+# 분석을 위한 SQL 핵심 무기
+    - Analytic SQL ( Window Function )
+
+
