@@ -5,7 +5,8 @@
                 <img :src="item.image" :alt="item.title">
                 <h4>{{ item.title }}</h4>
                 <p>{{ item.content }}</p>
-                <p>{{ moneyComma(item.price) }}원</p>
+                <input v-model.number="month">
+                <p>{{ moneyComma(month * item.price) }}원</p>
                 <button @click="$emit('closeModal', false)">닫기</button>
             </div>
         </div>
@@ -17,12 +18,25 @@
 
     export default {
         name: "ModalDetail",
+        data() {
+            return {
+                month : 1,
+            }
+        },
+        watch : {
+            month() {
+                if(this.month > 12) {
+                    alert("13이상 입력 불가");
+                    this.month = 1;
+                }
+            }
+        },
         props : {
             item : Object,
             isModal : Object
         },
         methods : {
-            moneyComma
+            moneyComma,
         }
     }
 </script>
