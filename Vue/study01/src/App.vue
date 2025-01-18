@@ -1,8 +1,12 @@
 <template>
   <ModalDetail @closeModal="isModal = false" :item = "modalData" :isModal = "isModal"/>
   <HeaderMenu />
-  <DiscountBanner />
-  <CardItem @openModal="modalData = item; isModal = true" :item="item" v-for="(item, i) in data" :key="i"/>
+  <div class="contents">
+    <DiscountBanner />
+    <div class="products">
+      <CardItem @openModal="modalData = item; isModal = true" :item="item" v-for="(item, i) in data" :key="i"/>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -34,10 +38,24 @@ export default {
 
 <style>
   body {
-    margin: 0
+    margin: 0;
   }
 
   div {
     box-sizing: border-box;
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
   }
 </style>

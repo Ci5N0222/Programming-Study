@@ -1,16 +1,22 @@
 <template>
     <div class="product">
         <img :src="item.image" :alt="item.title">
-        <h4 @click="$emit('openModal', item)">{{ item.title }}</h4>
-        <p>{{ item.price }}원</p>
+        <h4 @click="$emit('openModal', item)">{{ sliceText(item.title) }}</h4>
+        <p>{{ moneyComma(item.price) }}원</p>
     </div>
 </template>
 
 <script>
+  import {sliceText, moneyComma} from '@/common';
+
     export default {
         name :"CardItem",
         props : {
             item: Object
+        },
+        methods : {
+          sliceText,
+          moneyComma
         }
     }
 </script>
@@ -18,7 +24,7 @@
 <style>
 
 .product {
-  max-width: 700px;
+  max-width: 300px;
   border: 1px solid black;
   border-radius: 15px;
   display: flex;

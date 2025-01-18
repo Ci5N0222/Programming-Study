@@ -20,7 +20,11 @@
         width: 100%;
         background-color: #eee;
         padding: 10px;
-        margin: 10px;
+        margin: 0 10px;
         border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 </style>
