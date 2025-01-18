@@ -32,13 +32,21 @@
       <a v-for = "(menu, i) in menus" :key="i">{{ menu }}</a>
   </div>
 
+  <div class="product" v-for="(product, i) in data" :key="i">
+    <img :src="data[i].image" :alt="data[i].title">
+    <h4 @click="isModal = !isModal">{{ data[i].title }}</h4>
+    <p>{{ data[i].price }}원</p>
+  </div>
+  
+
+
   <!-- 데이터 바인딩 : {{ 변수 }} -->
   <!-- <h2 :style="style">{{ title }}</h2> -->
 
   
     <div class="product" v-for="(product, i) in products" :key="i">
       <!-- src에 있는 파일 가져올 때 ./ 시작 -->
-      <img  :src="images[i]" alt="Product Image" />
+      <img :src="images[i]" alt="Product Image" />
       <h4 @click="isModal = !isModal">{{ product }}</h4>
       <p>{{ prices[i] }} 만원</p>
       <!-- Vue onClick Event -->
@@ -52,6 +60,8 @@
 
 <script>
 
+import oneroomData from './oneroom.js';
+
 export default {
   name: 'App',
   data(){
@@ -64,7 +74,8 @@ export default {
       menus : ["Home", "Shop", "About"],
       images : ["/images/room0.jpg", "/images/room1.jpg", "/images/room2.jpg"],
       reports: [1, 2, 3],
-      isModal : false
+      isModal : false,
+      data : oneroomData
     }
   },
   // 함수 들을 보관
