@@ -3,9 +3,7 @@
   <HeaderMenu />
   <div class="contents">
     <DiscountBanner />
-    <div class="products">
-      <CardItem @openModal="modalData = item; isModal = true" :item="item" v-for="(item, i) in data" :key="i"/>
-    </div>
+    <CardItem @openModal="handleOpenModal" :items="data"/>
   </div>
 </template>
 
@@ -21,11 +19,15 @@ export default {
   data(){
     return {
       isModal : false,
-      modalData : {},
+      modalData : null,
       data : oneroomData
     }
   },
   methods: {
+    handleOpenModal(item) {
+      this.modalData = item;
+      this.isModal = true;
+    }
   },
   components: {
     DiscountBanner,
@@ -52,10 +54,4 @@ export default {
     align-items: center;
   }
 
-  .products {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  }
 </style>

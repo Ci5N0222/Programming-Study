@@ -1,21 +1,28 @@
 <template>
-    <div class="black-bg" v-if="isModal">
-        <div class="white-bg">
-        <img :src="item.image" :alt="item.title">
-        <h4>{{ item.title }}</h4>
-        <p>{{ item.content }}</p>
-        <p>{{ item.price }}원</p>
-        <button @click="$emit('closeModal', false)">닫기</button>
+    <Transition name="fade">
+        <div class="black-bg" v-if="isModal">
+            <div class="white-bg">
+                <img :src="item.image" :alt="item.title">
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.content }}</p>
+                <p>{{ moneyComma(item.price) }}원</p>
+                <button @click="$emit('closeModal', false)">닫기</button>
+            </div>
         </div>
-    </div>
+    </Transition>
 </template>
 
 <script>
+    import { moneyComma } from '@/common';
+
     export default {
         name: "ModalDetail",
         props : {
             item : Object,
             isModal : Object
+        },
+        methods : {
+            moneyComma
         }
     }
 </script>
@@ -51,6 +58,16 @@
     .white-bg > button {
         width: 80px;
         height: 30px;
+    }
+
+    .fade-enter-from {
+        transform: translateY(50px);
+    }
+    .fade-enter-active{
+        transition: all 0.7s;
+    }
+    .fade-enter-to{
+        transform: translateY(0px);
     }
 
 </style>

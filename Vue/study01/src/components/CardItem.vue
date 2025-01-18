@@ -1,9 +1,13 @@
 <template>
-    <div class="product">
-        <img :src="item.image" :alt="item.title">
-        <h4 @click="$emit('openModal', item)">{{ sliceText(item.title) }}</h4>
-        <p>{{ moneyComma(item.price) }}원</p>
+  <Transition name="itemBinding" appear>
+    <div class="products">
+        <div class="product" v-for="(item, i) in items" :key="i">
+            <img :src="item.image" :alt="item.title">
+            <h4 @click="$emit('openModal', item)">{{ sliceText(item.title) }}</h4>
+            <p>{{ moneyComma(item.price) }}원</p>
+        </div>
     </div>
+  </Transition>
 </template>
 
 <script>
@@ -12,7 +16,7 @@
     export default {
         name :"CardItem",
         props : {
-            item: Object
+            items: Object
         },
         methods : {
           sliceText,
@@ -22,6 +26,13 @@
 </script>
 
 <style>
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
 
 .product {
   max-width: 300px;
@@ -48,5 +59,17 @@
 .product > .report {
   display: flex;
   gap: 10px;
+}
+
+.itemBinding-enter-from{
+  opacity: 0;
+  transform: translateY(50px);
+}
+.itemBinding-enter-active{
+  transition: all 1s;
+}
+.itemBinding-enter-end{
+  opacity: 1;
+  transform: translateY(0px);
 }
 </style>

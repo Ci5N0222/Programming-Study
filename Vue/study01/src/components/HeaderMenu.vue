@@ -1,6 +1,11 @@
 <template>
     <div class="header">
-      <a v-for = "(item, i) in items" :key="i">{{ item }}</a>
+      <div class="menu">
+        <a v-for = "(menu, i) in menus" :key="i">{{ menu }}</a>
+      </div>
+      <div class="sub">
+        <a v-for="(item, i) in user.sessionMenu" :key="i">{{ item }}</a>
+      </div>
   </div>
 </template>
 
@@ -9,7 +14,11 @@
         name: "HeaderMenu",
         data() {
             return {
-                items : ["Home", "Shop", "About"],
+                menus : ["Home", "Shop", "About"],
+                user : {
+                  state : "fail",
+                  sessionMenu : ["Sign-in", "Sign-up"],
+                }
             }
         }
     }
@@ -19,11 +28,22 @@
 .header {
   background-color: darkslateblue;
   padding: 15px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.header a {
+.header > .menu > a {
   color: white;
   padding: 10px;
   font-weight: 700;
+}
+
+.header > .sub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: white;
+  gap: 10px;
 }
 </style>
