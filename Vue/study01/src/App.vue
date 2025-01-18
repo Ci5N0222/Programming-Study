@@ -5,18 +5,23 @@
       1. 다자인
       2. UI의 현재 상태를 데이터로 저장해둠
       3. 데이터에 따라 UI가 어떻게 보일지 작성
-
   -->
 
   <!--
     *** 조건문 ***
     사용법 : v-if=" 조건식 "
   -->
-  <!-- 모달창 -->
+
+  <!-- 
+    모달창 
+      목록에서 클릭된 게시물의 번호를 modalData에 저장하여 바인딩
+   -->
   <div class="black-bg" v-if="isModal">
     <div class="white-bg">
-      <h4>상세페이지임</h4>
-      <p>상세페이지 내용임</p>
+      <img :src="data[modalData].image" :alt="data[modalData].title">
+      <h4>{{data[modalData].title}}</h4>
+      <p>{{data[modalData].content}}</p>
+      <p>{{ data[modalData].price }}원</p>
       <button @click="isModal = !isModal">닫기</button>
     </div>
   </div>
@@ -34,7 +39,7 @@
 
   <div class="product" v-for="(product, i) in data" :key="i">
     <img :src="data[i].image" :alt="data[i].title">
-    <h4 @click="isModal = !isModal">{{ data[i].title }}</h4>
+    <h4 @click="isModal = !isModal; modalData = i">{{ data[i].title }}</h4>
     <p>{{ data[i].price }}원</p>
   </div>
   
@@ -75,6 +80,7 @@ export default {
       images : ["/images/room0.jpg", "/images/room1.jpg", "/images/room2.jpg"],
       reports: [1, 2, 3],
       isModal : false,
+      modalData : 0,
       data : oneroomData
     }
   },
@@ -142,6 +148,15 @@ div {
   background: white;
   border-radius: 8px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.white-bg > button {
+  width: 80px;
+  height: 30px;
 }
 
 .menu {
