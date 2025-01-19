@@ -3,7 +3,11 @@
   <HeaderMenu />
   <div class="contents">
     <DiscountBanner />
-    <CardItem @openModal="handleOpenModal" :items="data"/>
+    <div class="button-box">
+      <button @click="priceSortAsc"> 낮은 가격순 정렬</button>
+      <button @click="priceSortDesc"> 높은 가격순 정렬</button>
+    </div>
+    <CardItem @openModal="handleOpenModal" :items="cpData"/>
   </div>
 </template>
 
@@ -20,13 +24,26 @@ export default {
     return {
       isModal : false,
       modalData : null,
-      data : oneroomData
+      data : oneroomData,
+      cpData : [...oneroomData]
     }
   },
   methods: {
     handleOpenModal(item) {
       this.modalData = item;
       this.isModal = true;
+    },
+    priceSortAsc() {
+      this.cpData = [...this.data];
+      this.cpData.sort(function(a, b) {
+        return a.price - b.price;
+      });
+    },
+    priceSortDesc() {
+      this.cpData = [...this.data];
+      this.cpData.sort(function(a, b) {
+        return b.price - a.price;
+      });
     }
   },
   components: {
@@ -54,4 +71,11 @@ export default {
     align-items: center;
   }
 
+  .button-box {
+    width: 95%;
+    display: flex;
+    justify-content: left;
+    gap: 10px;
+    margin: 10px
+  }
 </style>
