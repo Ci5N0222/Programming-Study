@@ -114,3 +114,15 @@
     부모가 메시지 수신할 때
     @작명=""
 ```
+
+
+### Lifecycle hook
+- creted → mounted → updated → unmounted
+- beforeCreated()
+- created()
+- beforeMount()
+- mounted()
+- beforeUpdate()
+- updated()
+- beforeUnmount()
+- unmounted()

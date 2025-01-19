@@ -2,7 +2,7 @@
   <ModalDetail @closeModal="isModal = false" :item = "modalData" :isModal = "isModal"/>
   <HeaderMenu />
   <div class="contents">
-    <DiscountBanner />
+    <DiscountBanner v-if="showDiscount == true" />
     <div class="button-box">
       <button @click="priceSortAsc"> 낮은 가격순 정렬</button>
       <button @click="priceSortDesc"> 높은 가격순 정렬</button>
@@ -22,6 +22,7 @@ export default {
   name: 'App',
   data(){
     return {
+      showDiscount : true,
       isModal : false,
       modalData : null,
       data : oneroomData,
@@ -44,14 +45,31 @@ export default {
       this.cpData.sort(function(a, b) {
         return b.price - a.price;
       });
-    }
+    },
   },
   components: {
     DiscountBanner,
     ModalDetail,
     CardItem,
     HeaderMenu
-  }
+  },
+
+  // Vue Lifecycle hook 
+  // [ created ( 데이터 생성 ) ]
+  created() {
+    
+  },
+  
+  // [ mounted( 페이지가 마운트 될때 실행 ) ]
+  mounted() {
+    setTimeout(() => {
+      this.showDiscount = false;
+    }, 2000);
+
+    setInterval(() => {
+
+    });
+  },
 }
 </script>
 
