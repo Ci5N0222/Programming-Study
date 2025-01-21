@@ -1,6 +1,6 @@
 <template>
     <div class="board" v-for="(item, i) in board" :key="i">
-        <h3>{{ item.title }}</h3>
+        <h3><a>{{ item.title }}</a></h3>
         <div>{{ item.content }}</div>
         <div>{{ item.date }}</div>
     </div>
