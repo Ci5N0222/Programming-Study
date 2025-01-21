@@ -14,3 +14,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 https://getbootstrap.com/docs/5.0/getting-started/introduction/
 
 ```
+
+### vue router
+``` bash
+$ npm install vue-router@4
+```

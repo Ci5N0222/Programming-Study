@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-light" :class="{ 'scrolled': isScrolled }">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="/">VueLog</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -9,16 +9,10 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link" href="/list">Board</a>
           </li>
         </ul>
       </div>
@@ -53,7 +47,6 @@ export default {
 nav {
   background-color: transparent;
   border-bottom: 1px solid white;
-  position: fixed !important;
   width: 100%;
   z-index: 2;
   transition: background-color 0.8s ease, color 0.5s ease;
@@ -65,5 +58,9 @@ nav {
 
 nav > div {
   width: 90%;
+}
+
+li > a:hover {
+  color : orange !important;
 }
 </style>

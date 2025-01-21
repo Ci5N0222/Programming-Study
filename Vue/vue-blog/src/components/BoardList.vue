@@ -7,12 +7,16 @@
 </template>
 
 <script>
-export default {
-    name : 'BoardList',
-    props : {
-        board : Object
+    import board from '../assets/board'
+
+    export default {
+        name : 'BoardList',
+        data() {
+            return {
+                board : board
+            }
+        }
     }
-}
 </script>
 
 <style>
