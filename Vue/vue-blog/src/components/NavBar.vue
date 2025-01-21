@@ -18,6 +18,7 @@
       </div>
     </div>
   </nav>
+  <div class="nav-area"></div>
 </template>
 
 <script>
@@ -48,8 +49,10 @@ nav {
   background-color: transparent;
   border-bottom: 1px solid white;
   width: 100%;
+  position: fixed !important;
+  top: 0;
   z-index: 2;
-  transition: background-color 0.8s ease, color 0.5s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .scrolled {
@@ -62,5 +65,9 @@ nav > div {
 
 li > a:hover {
   color : orange !important;
+}
+
+.nav-area {
+  height: 60px;
 }
 </style>

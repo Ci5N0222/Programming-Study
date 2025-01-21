@@ -21,5 +21,9 @@ export default {
 <style>
 #app {
   text-align: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  
 }
 </style>

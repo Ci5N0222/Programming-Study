@@ -1,6 +1,6 @@
 <template>
     <div class="board" v-for="(item, i) in board" :key="i">
-        <h3><a>{{ item.title }}</a></h3>
+        <h3 @click="$router.push('/board/'+item.number)">{{ item.title }}</h3>
         <div>{{ item.content }}</div>
         <div>{{ item.date }}</div>
     </div>
@@ -30,5 +30,9 @@
         border-radius: 5px;
         padding : 20px 0;
         margin : 10px;
+    }
+
+    .board > h3:hover {
+     cursor: pointer;   
     }
 </style>
