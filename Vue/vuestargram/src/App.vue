@@ -10,6 +10,7 @@
   </div>
 
   <ContainerV :postdata = "postdata"/>
+  <button @click="more">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -18,17 +19,30 @@
     </ul>
  </div>
 
+
 </template>
 
 <script>
 import ContainerV from './components/ContainerV.vue';
 import postdata from './assets/data/postdata';
+import axios from 'axios';
 
 export default {
   name: 'App',
   data() {
     return {
-      postdata
+      postdata,
+      count : 0
+    }
+  },
+  methods : {
+    more() {
+      axios.get(`https://codingapple1.github.io/vue/more${this.count}.json`).then(res => {
+        this.postdata.push(res.data);
+      }).catch(err => {
+        alert("Error message : ", err);
+      });
+      this.count++;
     }
   },
   components: {
