@@ -7,7 +7,7 @@
     <div class="post-body" :style="{ backgroundImage : `url(${postdata.postImage})` }"></div>
     <div class="post-content">
       <p>{{ postdata.likes }} Likes</p>
-      <p><strong>글쓴이아이디</strong>{{ postdata.content }}</p>
+      <p><strong>글쓴이아이디 </strong>{{ postdata.content }}</p>
       <p class="date">{{ postdata.date }}</p>
     </div>
   </div>

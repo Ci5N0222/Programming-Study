@@ -9,7 +9,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerV :postdata = "postdata"/>
+  <ContainerV :postdata = "postdata" :step = "step"/>
   <button @click="more">더보기</button>
 
   <div class="footer">
@@ -18,8 +18,6 @@
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
-
-
 </template>
 
 <script>
@@ -32,7 +30,8 @@ export default {
   data() {
     return {
       postdata,
-      count : 0
+      count : 0,
+      step : 0
     }
   },
   methods : {
