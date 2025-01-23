@@ -9,7 +9,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <Container />
+  <ContainerV :postdata = "postdata"/>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -21,14 +21,18 @@
 </template>
 
 <script>
-import Container from './components/ContainerView.vue';
-
+import ContainerV from './components/ContainerV.vue';
+import postdata from './assets/data/postdata';
 
 export default {
-
   name: 'App',
+  data() {
+    return {
+      postdata
+    }
+  },
   components: {
-    Container
+    ContainerV
   }
 }
 </script>
