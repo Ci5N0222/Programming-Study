@@ -1,0 +1,115 @@
+:root {
+    --s-font : 12px;
+    --m-font : 16px;
+    --l-font : 20px;
+    --xl-font : 24px;
+    --xxl-font : 30px;
+    --xxxl-font : 40px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.ftw-800 {
+    font-weight: 800;
+}
+
+.banner {
+    width: 100%;
+    height: 200px;
+}
+
+.banner > img { 
+    width: 100%;
+    height: 100%
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-menu {
+    width: 95%;
+    list-style: none;
+    display: flex;
+    font-size: 20px;
+}
+
+.sub-menu > li {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+}
+
+.sub-menu > li:hover {
+    color: orange;
+}
+
+.sub-menu > li:first-child {
+    border-top-left-radius: 5px;
+}
+
+.sub-menu > li:last-child {
+    border-top-right-radius: 5px;
+}
+
+.sub-content {
+    width: 95%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+}
+
+.footer {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+}
+
+.profile-content {
+    flex: 1;
+    width: 95%;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+
+.profile-img {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img > img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 50%;
+}
+
+.profile-desription {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    gap: 20px;
+}
