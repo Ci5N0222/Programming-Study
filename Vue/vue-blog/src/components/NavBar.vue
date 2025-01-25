@@ -46,8 +46,8 @@ export default {
 
 <style>
 nav {
-  background-color: transparent;
-  border-bottom: 1px solid white;
+  background-color: white;
+  border-bottom: 1px solid lightgray;
   width: 100%;
   position: fixed !important;
   top: 0;
