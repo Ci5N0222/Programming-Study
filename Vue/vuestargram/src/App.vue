@@ -10,7 +10,7 @@
   </div>
 
   <ContainerV :postdata = "postdata" :step = "step"/>
-  <button @click="more">더보기</button>
+  <div ref="infiniteScrollTrigger" class="trigger"></div>
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -31,17 +31,41 @@ export default {
     return {
       postdata,
       count : 0,
-      step : 0
+      step : 0,
+      isFetching : false,
+      hasMore : true
     }
   },
+  mounted() {
+    this.initIntersectionObserver();
+  },
   methods : {
-    more() {
+    loadPosts() {
+      if(this.isFetching || !this.hasMore) return;
+
+      this.isFetching = true;
+
       axios.get(`https://codingapple1.github.io/vue/more${this.count}.json`).then(res => {
-        this.postdata.push(res.data);
+        this.postdata = [ ...this.postdata, res.data ];
       }).catch(err => {
-        alert("Error message : ", err);
+        if(err.status == "404") this.hasMore = false;
       });
       this.count++;
+      this.isFetching = false;
+    },
+    initIntersectionObserver() {
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 1.0
+      };
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if(entry.isIntersecting) {
+          this.loadPosts();
+        }
+      }, options);
+      observer.observe(this.$refs.infiniteScrollTrigger);
     }
   },
   components: {
@@ -115,6 +139,9 @@ export default {
   }
   .input-plus {
     cursor: pointer;
+  }
+  .trigger {
+    height: 1px;
   }
   #app {
     box-sizing: border-box;
