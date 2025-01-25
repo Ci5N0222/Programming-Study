@@ -1,7 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 배너 바인딩
+    bannerBinding();
+
+    // 서브메뉴 바인딩
     subMenuBinding();
 
 });
+
+// 배너 바인딩
+const bannerBinding = () => {
+    const bannerList = ["/img/home-banner.jpg", ""];
+    const banner = document.querySelector('.banner');
+    const item = `
+        <img src="${bannerList[0]}" alt="home banner image">
+    `
+
+    banner.innerHTML += item;
+}
 
 // 서브메뉴 바인딩 
 const subMenuBinding = () => {
@@ -15,6 +30,7 @@ const subMenuBinding = () => {
 
     subMenu.innerHTML = menuItem;
     subContentHandler(subMenuList[0]);
+    subMenu.querySelector('li').style.borderBottom = 'none';
 }
 
 // 서브메뉴 클릭 이벤트
@@ -25,10 +41,12 @@ const subMenuClick = (e) => {
     if(subMenu) {
         subMenu.querySelectorAll('li').forEach(li => {
             li.classList.remove('ftw-800');
+            li.style.borderBottom = '1px solid lightgray';
         });
     }
 
     target.classList.add("ftw-800");
+    target.style.borderBottom = 'none';
 
     // 해당 메뉴 클릭시 보여줄 내용 작성
     subContentHandler(target.innerHTML);

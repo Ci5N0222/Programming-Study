@@ -72,7 +72,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    /* border: 1px solid lightgray; */
 }
 
 .footer {
