@@ -20,7 +20,7 @@
 - node_modules : 프로젝트에 쓰는 라이브러리들
 - src : 소스코드 
 - public : html 등 정적인 파일
-- package.json : 라이브러리 버전, 프로젝트 설정 기록
+- package.json : 라이브러리 버전, 프로젝트 설정 기록 
 
 ### 동적 UI 만드는 법
 1. 디자인
