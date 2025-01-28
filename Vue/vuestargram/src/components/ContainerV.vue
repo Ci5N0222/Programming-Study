@@ -7,21 +7,17 @@
 
     <!-- 필터선택페이지 -->
     <div v-if="step == 1" >
-      <div class="upload-image"></div>
+      <div class="upload-image" :style="`background-image:url(${image})`"></div>
       <div class="filters">
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
-        <div class="filter-1"></div>
+        <FilterBox :image="image"/>
       </div>
     </div>
 
     <!-- 글작성페이지 -->
     <div v-if="step == 2" >
-      <div class="upload-image"></div>
+      <div class="upload-image" :style="`background-image:url(${image})`"></div>
       <div class="write">
-        <textarea class="write-box">write!</textarea>
+        <textarea class="write-box" @input="$emit('write', $event.target.value)">write!</textarea>
       </div>
     </div>
     
@@ -30,16 +26,19 @@
 </template>
 
 <script>
+import FilterBox from './FilterBox.vue';
 import PostV from './PostV.vue';
 
 export default {
   name: 'ContainerV',
   props : {
     postdata : Array,
-    step : Number
+    step : Number,
+    image: String
   },
   components: {
-    PostV
+    PostV,
+    FilterBox
   }
 }
 </script>

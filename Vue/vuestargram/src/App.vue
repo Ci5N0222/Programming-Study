@@ -1,20 +1,21 @@
 <template>
   <div class="header">
     <ul class="header-button-left">
-      <li>Cancel</li>
+      <li @click="step = 0">Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-if="step == 1" @click="step++">Next</li>
+      <li v-if="step == 2" @click="publish">발행</li>
     </ul>
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerV :postdata = "postdata" :step = "step"/>
+  <ContainerV :postdata = "postdata" :step = "step" :image = "image" @write="myBoard = $event"/>
   <div ref="infiniteScrollTrigger" class="trigger"></div>
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" accept="image/*" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
  </div>
@@ -33,7 +34,9 @@ export default {
       count : 0,
       step : 0,
       isFetching : false,
-      hasMore : true
+      hasMore : true,
+      image: "",
+      myBoard : ""
     }
   },
   mounted() {
@@ -53,19 +56,44 @@ export default {
       this.count++;
       this.isFetching = false;
     },
+
     initIntersectionObserver() {
       const options = {
         root: null,
         rootMargin: '0px',
         threshold: 1.0
       };
-      
+
       const observer = new IntersectionObserver(([entry]) => {
         if(entry.isIntersecting) {
           this.loadPosts();
         }
       }, options);
       observer.observe(this.$refs.infiniteScrollTrigger);
+    },
+
+    upload(e) {
+      const target = e.target.files;
+
+      // 업도르한 이미지의 url을 생성
+      this.image = URL.createObjectURL(target[0]);
+      this.step = 1;
+    },
+
+    publish() {
+      let myBoard = {
+        name: "Noh Sion",
+        userImage: "https://picsum.photos/100?random=3",
+        postImage: this.image,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.myBoard,
+        filter: "perpetua"
+      }
+
+      this.postdata = [ myBoard, ...this.postdata ];
+      this.step = 0;
     }
   },
   components: {
