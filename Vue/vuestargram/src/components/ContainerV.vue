@@ -9,7 +9,7 @@
     <div v-if="step == 1" >
       <div class="upload-image" :style="`background-image:url(${image})`"></div>
       <div class="filters">
-        <FilterBox :image="image"/>
+        <FilterBox :image="image" :filter="filter" v-for="(filter, i) in filtersName" :key = "i"/>
       </div>
     </div>
 
@@ -31,6 +31,11 @@ import PostV from './PostV.vue';
 
 export default {
   name: 'ContainerV',
+  data() {
+    return {
+      filtersName : [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", "inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", "reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
+    }
+  },
   props : {
     postdata : Array,
     step : Number,
