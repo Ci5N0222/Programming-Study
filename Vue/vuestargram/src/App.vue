@@ -59,7 +59,7 @@ export default {
         rootMargin: '0px',
         threshold: 1.0
       };
-
+      
       const observer = new IntersectionObserver(([entry]) => {
         if(entry.isIntersecting) {
           this.loadPosts();

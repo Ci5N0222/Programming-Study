@@ -16,11 +16,6 @@
 <script>
 export default {
   name: 'PostV',
-  data() {
-    return {
-      
-    }
-  },
   props : {
     postdata : Object
   }
