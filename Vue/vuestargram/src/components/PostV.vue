@@ -1,14 +1,18 @@
 <template>
   <div class="post">
     <div class="post-header">
-      <div class="profile" :style="{ backgroundImage : `url(${postdata.userImage})` }"></div>
-      <span class="profile-name">{{ postdata.name }}</span>
+      <div class="profile" :style="{ backgroundImage : `url(${postObject.userImage})` }"></div>
+      <span class="profile-name">{{ postObject.name }}</span>
     </div>
-    <div :class="postdata.filter" class="post-body" :style="{ backgroundImage : `url(${postdata.postImage})` }"></div>
+    <div @click="isLike" :class="postObject.filter" class="post-body" :style="{ backgroundImage : `url(${postObject.postImage})` }"></div>
     <div class="post-content">
-      <p>{{ postdata.likes }} Likes</p>
-      <p><strong>글쓴이아이디 </strong>{{ postdata.content }}</p>
-      <p class="date">{{ postdata.date }}</p>
+      <p>
+        <span v-if="postObject.liked">♥</span> 
+        <span v-if="!postObject.liked">♡</span> 
+        {{ postObject.likes }} Likes
+      </p>
+      <p><strong>글쓴이아이디 </strong>{{ postObject.content }}</p>
+      <p class="date">{{ postObject.date }}</p>
     </div>
   </div>
 </template>
@@ -16,6 +20,19 @@
 <script>
 export default {
   name: 'PostV',
+  data() {
+    return {
+      postObject : this.postdata
+    }
+  },
+  methods : {
+    isLike(){
+      let likes = this.postObject.likes;
+      if(this.postObject.liked) likes--;
+      else likes++;
+      this.postObject = { ...this.postdata, liked: !this.postObject.liked, likes };
+    }
+  },
   props : {
     postdata : Object
   }
