@@ -10,6 +10,9 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
+  <h4>{{ $store.state.name }} ( {{ $store.state.age }} )</h4>
+  <button @click="$store.commit('updateAge')">버튼</button>
+
   <ContainerV :postdata = "postdata" :step = "step" :image = "image" :filter = "filter" @write="myBoard = $event"/>
   <div ref="infiniteScrollTrigger" class="trigger"></div>
 

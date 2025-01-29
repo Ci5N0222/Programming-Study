@@ -23,5 +23,30 @@
 ``` bash
 // install
 $ npm install mitt
+```
 
+### Vuex
+``` bash
+// install
+$ npm install vuex@next
+
+
+/** main.js **/
+import store from './store.js';
+app.use(store).mount('#app');
+
+/** store.js **/
+import { createStore } from "vuex";
+const store = createStore({
+    state() {
+        return {
+            name : "kim"
+        }
+    }
+});
+export default store;
+
+
+/** Binding **/
+{{ $store.state.name }}
 ```
