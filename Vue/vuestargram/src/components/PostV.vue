@@ -4,7 +4,7 @@
       <div class="profile" :style="{ backgroundImage : `url(${postdata.userImage})` }"></div>
       <span class="profile-name">{{ postdata.name }}</span>
     </div>
-    <div class="post-body" :style="{ backgroundImage : `url(${postdata.postImage})` }"></div>
+    <div :class="postdata.filter" class="post-body" :style="{ backgroundImage : `url(${postdata.postImage})` }"></div>
     <div class="post-content">
       <p>{{ postdata.likes }} Likes</p>
       <p><strong>글쓴이아이디 </strong>{{ postdata.content }}</p>

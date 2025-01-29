@@ -10,7 +10,7 @@
     <img src="./assets/logo.png" class="logo" />
   </div>
 
-  <ContainerV :postdata = "postdata" :step = "step" :image = "image" @write="myBoard = $event"/>
+  <ContainerV :postdata = "postdata" :step = "step" :image = "image" :filter = "filter" @write="myBoard = $event"/>
   <div ref="infiniteScrollTrigger" class="trigger"></div>
 
   <div class="footer">
@@ -36,10 +36,14 @@ export default {
       isFetching : false,
       hasMore : true,
       image: "",
-      myBoard : ""
+      myBoard : "",
+      filter: ""
     }
   },
   mounted() {
+    this.emitter.on('filter', (res) => {
+      this.filter = res;
+    });
     this.initIntersectionObserver();
   },
   methods : {
@@ -89,7 +93,7 @@ export default {
         date: "May 15",
         liked: false,
         content: this.myBoard,
-        filter: "perpetua"
+        filter: this.filter
       }
 
       this.postdata = [ myBoard, ...this.postdata ];

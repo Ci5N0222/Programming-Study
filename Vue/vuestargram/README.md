@@ -17,5 +17,11 @@
    </상위컴포넌트>
 ** <slot name="a"></slot>
    <slot name="b"></slot>
+```
+
+### mitt
+``` bash
+// install
+$ npm install mitt
 
 ```

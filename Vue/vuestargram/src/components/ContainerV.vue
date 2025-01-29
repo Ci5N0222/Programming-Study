@@ -7,7 +7,7 @@
 
     <!-- 필터선택페이지 -->
     <div v-if="step == 1" >
-      <div class="upload-image" :style="`background-image:url(${image})`"></div>
+      <div :class="filter" class="upload-image" :style="`background-image:url(${image})`"></div>
       <div class="filters">
         <FilterBox :image="image" :filter="filter" v-for="(filter, i) in filtersName" :key = "i">
           {{ filter }}
@@ -17,7 +17,7 @@
 
     <!-- 글작성페이지 -->
     <div v-if="step == 2" >
-      <div class="upload-image" :style="`background-image:url(${image})`"></div>
+      <div :class="filter" class="upload-image" :style="`background-image:url(${image})`"></div>
       <div class="write">
         <textarea class="write-box" @input="$emit('write', $event.target.value)">write!</textarea>
       </div>
@@ -41,7 +41,8 @@ export default {
   props : {
     postdata : Array,
     step : Number,
-    image: String
+    image: String,
+    filter: String
   },
   components: {
     PostV,
