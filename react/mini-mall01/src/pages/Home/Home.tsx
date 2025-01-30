@@ -1,7 +1,7 @@
-import {shoesData, shoes} from '../assets/data/shoes';
+import {shoesData, shoes} from '../../assets/data/shoes';
 import { useEffect, useState } from 'react';
-import { Card } from './Card';
-import { Banner } from './Banner';
+import { Card } from '../../components/Card';
+import { Banner } from '../../components/Banner';
 
 const Home = () => {
   const [shoes, useShoes] = useState<shoes[]>([]);

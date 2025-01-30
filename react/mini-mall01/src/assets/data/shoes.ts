@@ -5,7 +5,7 @@
 //     price :number,
 // }
 
-export type shoes = {
+export type shoesType = {
     readonly id :number,    // readonly 수정 불가능
     title :string,
     content :string,
@@ -14,7 +14,7 @@ export type shoes = {
     discount? :number       // 선택적 속성
 }
 
-export const shoesData :shoes[] = [
+export const shoesData :shoesType[] = [
     {
       id : 0,
       title : "White and Black",

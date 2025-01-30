@@ -1,18 +1,23 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useNavigate } from 'react-router-dom';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Header() {
+
+  let navi = useNavigate();
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">Mini-Mall</Navbar.Brand>
+        <Navbar.Brand onClick={ () => navi('/') } style={{cursor:'pointer'}}>Mini-Mall</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/products">Products</Nav.Link>
-            <Nav.Link href="/about">About</Nav.Link>
+            <Nav.Link onClick={ () => navi('/products') }>Products</Nav.Link>
+            <Nav.Link onClick={ () => navi('/event') }>Event</Nav.Link>
+            <Nav.Link onClick={ () => navi('/about') }>About</Nav.Link>
             
             {/* 드롭다운 메뉴
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
