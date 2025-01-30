@@ -12,9 +12,12 @@
 
   <h4>{{ $store.state.name }} ( {{ $store.state.age }} )</h4>
   <button @click="$store.commit('updateAge')">버튼</button>
+  <button @click="updateAge">버튼</button>
 
   <p>{{ $store.state.more }}</p>
   <button @click="$store.dispatch('getData')">더보기버튼</button>
+
+  <p>{{ 이름 }}  {{ age }}</p>
 
   <ContainerV :postdata = "postdata" :step = "step" :image = "image" :filter = "filter" @write="myBoard = $event"/>
   <div ref="infiniteScrollTrigger" class="trigger"></div>
@@ -31,6 +34,7 @@
 import ContainerV from './components/ContainerV.vue';
 import postdata from './assets/data/postdata';
 import axios from 'axios';
+import { mapMutations, mapState } from 'vuex';
 
 export default {
   name: 'App',
@@ -53,6 +57,8 @@ export default {
     this.initIntersectionObserver();
   },
   methods : {
+    ...mapMutations(['updateAge']),
+
     loadPosts() {
       if(this.isFetching || !this.hasMore) return;
 
@@ -108,6 +114,13 @@ export default {
   },
   components: {
     ContainerV
+  },
+  computed : {
+    name() {
+      return this.$store.state.name;
+    },
+    ...mapState(['name', 'age']),
+    ...mapState({ '이름': 'name' })
   }
 }
 </script>
