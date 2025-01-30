@@ -29,3 +29,5 @@ useEffect(() => { return () => { }})
 // 5. 특정 state 변경시에만 실행
 useEffect(() => { }, [ state ])
 ```
+
+## AJAX( Asynchronous Javascript And Xml )

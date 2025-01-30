@@ -8,7 +8,7 @@ export const Card = (props :{item :shoesType, key :number}) => {
 
   return (
     <div onClick={() => navi(`/products/${props.item.id}`)} className="col-md-4 product" key={props.key}>
-      <img src={ props.item.image } width="80%" alt={props.item.title}/>
+      <img src={ `https://codingapple1.github.io/shop/shoes${props.item.id+1}.jpg` } width="80%" alt={props.item.title}/>
       <h4>{ props.item.title }</h4>
       <p>{ addComma(props.item.price) }원</p>
     </div>

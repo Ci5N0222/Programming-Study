@@ -23,7 +23,10 @@ import { BrowserRouter } from 'react-router-dom'
  </Routes>
 ```
 
-#### 3. Styled-Components
+#### 3. axios
+`$ npm install axios`
+
+#### 4. Styled-Components
 ```bash
 /** Install **/
 $ npm install styled-components
