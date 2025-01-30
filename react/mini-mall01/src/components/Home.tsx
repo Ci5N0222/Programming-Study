@@ -1,7 +1,7 @@
-import bannerImage from '../assets/img/main-bg.png'
 import {shoesData, shoes} from '../assets/data/shoes';
 import { useEffect, useState } from 'react';
 import { Card } from './Card';
+import { Banner } from './Banner';
 
 const Home = () => {
   const [shoes, useShoes] = useState<shoes[]>([]);
@@ -12,8 +12,7 @@ const Home = () => {
   }, [])
   return (
     <>
-      {/* Banner */}
-      <div className="main-bg" style={{ backgroundImage: 'url(' + bannerImage + ')' }}></div>
+      <Banner />
 
       {/* Products */}
       <div className='main-products'>
