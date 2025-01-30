@@ -5,18 +5,40 @@
   background-position: center;
 }
 
-.main-products {
+.products {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
 }
 
-.main-products > div > .product {
+.products > div {
+  width: 95%;
+}
+
+.products-category {
+  width: 90%;
+  margin: auto;
+}
+
+.products-category > p {
+  margin-top: 10px;
+  padding: 15px 0 0 15px;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.product {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.product:hover {
+  cursor: pointer;
+  border: 1px solid lightgrey;
+  border-radius: 10px;;
 }
 
 .sign {

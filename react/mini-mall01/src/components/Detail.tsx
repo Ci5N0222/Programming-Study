@@ -11,10 +11,15 @@ export const Detail = () => {
 
   useEffect(() => {
     if(!id) return;
-
     const productFound :shoesType|undefined = shoesData.find(item => item.id === Number(id));
     setProduct(productFound);
 
+    // Clean up function
+    return () => {
+      // unmount 시 실행됨( mount 시 실행 X )
+      // 기존 데이터 요청은 제거
+
+    }
   }, [id]);
 
   if(!product) return <Error />
