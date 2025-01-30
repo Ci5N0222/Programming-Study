@@ -1,16 +1,21 @@
-import { useState } from 'react'
 import './App.css'
-import Header from './components/Navbar'
+import Header from './components/Header'
 import Home from './components/Home'
+import { Routes, Route } from 'react-router-dom'
+import { Products } from './pages/Products/Products'
+import { About } from './pages/About/About'
 
 function App() {
-  const [shoes, setShoes] = useState();
-
   return (
     <>
       <div>
         <Header />
-        <Home />
+        
+        <Routes>
+          <Route path="/" element={ <Home /> } />
+          <Route path="/products" element={ <Products /> } />
+          <Route path="/about" element={ <About /> } />
+        </Routes>
       </div>
     </>
   )
