@@ -53,3 +53,26 @@
 .error-page > button:hover {
   color: orange;
 }
+
+.detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.detail-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-info {
+  width: 90%;
+  height: 90%;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

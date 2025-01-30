@@ -3,24 +3,6 @@ import { addComma } from "../assets/common/common"
 import { shoesType, shoesData } from "../assets/data/shoes"
 import { useParams } from "react-router-dom"
 import { Error } from "../pages/Error/Error"
-import styled from "styled-components"
-
-type YellowBtnType = {
-  bg :string
-  color? :string
-}
-
-// Styled-Components
-let YellowBtn = styled.button<YellowBtnType>`
-  background: ${ props => props.bg };
-  color: ${ props => props.color == undefined ? 'black' : 'red'};
-  padding: 10px;
-`
-
-let NewBtn = styled(YellowBtn)`
-  border: 1px solid black;
-  font-weight: bold;
-`
 
 export const Detail = () => {
   // useParams : 현재 url의 파리미터를 받아온다.
@@ -38,18 +20,18 @@ export const Detail = () => {
   if(!product) return <Error />
   
   return (
-    <div className="container">
-      <YellowBtn bg='blue'>버튼</YellowBtn>
-      <NewBtn bg='white'>버튼</NewBtn>
+    <div className="container detail">
       <div className="row">
         <div className="col-md-6">
           <img src={product.image} width="100%" />
         </div>
-        <div className="col-md-6">
-          <h4 className="pt-5">{ product.title }</h4>
-          <p>{ product.content }</p>
-          <p>{ addComma(product.price) }원</p>
-          <button className="btn btn-danger">주문하기</button> 
+        <div className="col-md-6 detail-col">
+          <div className="detail-info">
+            <h4>{ product.title }</h4>
+            <p>{ product.content }</p>
+            <p>{ addComma(product.price) }원</p>
+            <button className="btn btn-danger">주문하기</button> 
+          </div>
         </div>
       </div>
     </div> 
