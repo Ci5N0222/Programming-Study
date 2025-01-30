@@ -23,12 +23,16 @@
       </div>
     </div>
     
+    <div v-if="step == 3">
+      <MyPage />
+    </div>
     
   </div>
 </template>
 
 <script>
 import FilterBox from './FilterBox.vue';
+import MyPage from './MyPage.vue';
 import PostV from './PostV.vue';
 
 export default {
@@ -46,7 +50,8 @@ export default {
   },
   components: {
     PostV,
-    FilterBox
+    FilterBox,
+    MyPage
   }
 }
 </script>

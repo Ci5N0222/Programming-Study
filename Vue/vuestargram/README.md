@@ -50,3 +50,15 @@ export default store;
 /** Binding **/
 {{ $store.state.name }}
 ```
+
+### Options API
+
+### Composition API
+
+
+### PWA
+- 웹을 앱으로 사용
+``` bash
+// install
+$ npm install @vue/cli-plugin-pwa
+```
