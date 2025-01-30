@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import './App.css'
 import Header from './components/Navbar'
-import Main from './components/Main'
+import Home from './components/Home'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [shoes, setShoes] = useState();
 
   return (
     <>
       <div>
         <Header />
-        <Main />
+        <Home />
       </div>
     </>
   )
