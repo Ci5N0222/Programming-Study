@@ -41,8 +41,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 15px 10px;
-  border-top: 1px solid grey;
+  margin-top: 15px;
+  padding: 20px 10px;
+  border-top: 1px solid lightgrey;
   font-size: 15px;
 }
 

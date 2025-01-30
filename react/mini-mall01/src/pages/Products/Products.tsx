@@ -6,12 +6,16 @@ import { getReq } from "../../assets/api/api";
 
 export const Products = () => {
   const [shoes, setShoes] = useState<shoesType[]>([]);
+  const [count, setCount] = useState<number>(2);
 
   const getData = async() => {
-    const data :shoesType[] = await getReq('https://codingapple1.github.io/shop/data2.json');
+    if(count > 3) return alert("상품이 더이상 없습니다.");
+    
+    const data :shoesType[] = await getReq(`https://codingapple1.github.io/shop/data${count}.json`);
     if(data === null) return;
     else {
       setShoes(prev => [ ...prev, ...data ] );
+      setCount(prev => prev = prev+1);
     }
   }
 
