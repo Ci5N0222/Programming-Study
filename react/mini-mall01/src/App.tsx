@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Products } from './pages/Products/Products'
 import { About } from './pages/About/About'
 import { Error } from './pages/Error/Error'
-import { Detail } from './components/Detail'
+import { Detail } from './pages/Products/Detail/Detail'
 import { Event } from './pages/Event/Event'
 
 function App() {
