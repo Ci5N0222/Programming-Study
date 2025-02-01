@@ -54,3 +54,34 @@ let NewBtn = styled(YellowBtn)`
 `
 `
 ```
+
+
+#### 5. Redux-Toolkit
+``` bash
+/** Install **/
+$ npm install @reduxjs/toolkit react-redux
+
+// 1. store.ts 생성
+import { configureStore } from "@reduxjs/toolkit";
+
+export default configureStore(({
+    reducer : {
+
+    }
+}));
+
+// 2. main.tsx에 임포트
+// <APP /> 을 Provider 컴포넌트로 감싸며 props로 생성한 store를 넘긴다.
+import { Provider } from 'react-redux'
+import store from './store/store'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <Provider store={ store }>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </StrictMode>,
+)
+```

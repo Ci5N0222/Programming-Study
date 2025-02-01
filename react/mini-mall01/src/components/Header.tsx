@@ -16,6 +16,7 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link onClick={ () => navi('/products') }>Products</Nav.Link>
+            <Nav.Link onClick={ () => navi('/cart') }>Cart</Nav.Link>
             <Nav.Link onClick={ () => navi('/event') }>Event</Nav.Link>
             <Nav.Link onClick={ () => navi('/about') }>About</Nav.Link>
             

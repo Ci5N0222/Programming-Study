@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { shoesType, shoesData } from "../../assets/data/shoes"
+import { shoesData } from "../../assets/data/shoes"
 import { Card } from "../../components/Card";
 import { getReq } from "../../assets/api/api";
-
+import { shoesType } from "../../types/types";
 
 export const Products = () => {
   const [shoes, setShoes] = useState<shoesType[]>([]);

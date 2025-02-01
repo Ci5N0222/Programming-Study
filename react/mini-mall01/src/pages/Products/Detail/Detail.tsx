@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { addComma } from "../../../assets/common/common"
-import { shoesType, shoesData } from "../../../assets/data/shoes"
+import { shoesData } from "../../../assets/data/shoes"
 import { useParams } from "react-router-dom"
 import { Error } from "../../Error/Error"
 import { Nav } from 'react-bootstrap'
+import { shoesType } from "../../../types/types"
 
 export const Detail = () => {
   // useParams : 현재 url의 파리미터를 받아온다.
@@ -53,14 +54,14 @@ export const Detail = () => {
           </Nav.Item>
         </Nav>
         <div className="detail-tab">
-          <TabContent tab={ tab }/>
+          <TabContent tab={ tab } shoes={ product }/>
         </div>
       </div>
     </>
   )
 }
 
-const TabContent = (props: { tab :number }) :JSX.Element => {
+const TabContent = (props: { tab :number, shoes: shoesType }) :JSX.Element => {
 
   let [ fade, setFade ] = useState<string>("");
 
@@ -78,7 +79,7 @@ const TabContent = (props: { tab :number }) :JSX.Element => {
 
   return (
     <div className={ `start  ${fade}` }>
-      { [ <div>내용0</div>, <div>내용1</div>, <div>내용2</div> ][props.tab] }
+      { [ <div>{ props.shoes.title }</div>, <div>내용1</div>, <div>내용2</div> ][props.tab] }
     </div>
   )
   
