@@ -85,3 +85,9 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 ```
+
+#### React-Query
+```bash
+/** Install **/
+$ npm install react-query
+```

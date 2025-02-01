@@ -26,6 +26,13 @@ export const Detail = () => {
   const addProduct = () => {
     if(!product) return;
 
+    // 해당 상품이 장바구니에 이미 있는지 확인하고 없으면 상품 추가, 있으면 수량 변경하도록 짜야함
+
+    // 해당 상품 장바구니에 있는지 확인
+
+    // 있으면 수량 추가
+
+    // 없으면 해당 상품 추가
     const cart :cartType= {
       id : product.id,
       title : product.title,

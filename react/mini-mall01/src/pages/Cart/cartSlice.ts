@@ -18,7 +18,7 @@ export const cart = createSlice({
             // Redux Toolkit은 Immer 라이브러리를 사용
             // 참조된 객체의 값을 변경해도 Reduxt 스토에서 자동으로 감지하여 새로운 상태를 생성
             if(item) item.amount = action.payload.amount;       // Redux 스토에서 자동 반영
-        }
+        },
     }
 });
 
