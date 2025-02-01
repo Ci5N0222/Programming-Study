@@ -12,3 +12,10 @@ export type shoesType = {
     price :number,
     discount? :number       // 선택적 속성
 }
+
+export type cartType = {
+    id :number,
+    title :string,
+    amount :number,
+    price :number
+}
