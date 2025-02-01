@@ -141,6 +141,43 @@
   align-items: center;
 }
 
+.detail-cartBox {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap : 30px;
+  padding: 10px 0;
+}
+.detail-cartBox > button {
+  border : none;
+  border-radius : 5px;
+  background-color : orange;
+  padding : 5px 15px;
+  color: white;
+}
+
+.detail-cartBox > button:hover {
+  opacity: 0.8;
+}
+
+.detail-cart-amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-cart-amount > p {
+  margin: 0;
+}
+
+.detail-cart-amount > button {
+  font-weight: 800;
+  font-size: 20spx;
+  border: none;
+  background-color: transparent;
+} 
+
 .cart-banner {
   height: 150px;
   display: flex;

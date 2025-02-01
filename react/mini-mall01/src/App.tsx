@@ -8,8 +8,21 @@ import { Error } from './pages/Error/Error'
 import { Detail } from './pages/Products/Detail/Detail'
 import { Event } from './pages/Event/Event'
 import { Cart } from './pages/Cart/Cart'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { cartList } from './pages/Cart/cartSlice'
+import { cartData } from './assets/data/cart'
+import { productsList } from './pages/Products/ProductsSlice'
+import { productsData } from './assets/data/products'
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(productsList({products : productsData}));
+    dispatch(cartList({cart : cartData}));
+  }, []);
 
   return (
     <>

@@ -1,24 +1,49 @@
 import { useEffect, useState } from "react"
 import { addComma } from "../../../assets/common/common"
-import { shoesData } from "../../../assets/data/shoes"
-import { useParams } from "react-router-dom"
+import { productsData } from "../../../assets/data/products"
+import { useNavigate, useParams } from "react-router-dom"
 import { Error } from "../../Error/Error"
 import { Nav } from 'react-bootstrap'
-import { shoesType } from "../../../types/types"
+import { cartType, productsType } from "../../../types/types"
+import { useDispatch } from "react-redux"
+import { addCart } from "../../Cart/cartSlice"
 
 export const Detail = () => {
   // useParams : 현재 url의 파리미터를 받아온다.
   const { id } = useParams<{ id :string }>();
-  const [ product, setProduct ] = useState<shoesType | undefined>();
+  const [ product, setProduct ] = useState<productsType | undefined>();
   const [ tab, setTab ] = useState<number>(0);
+  const [ amount, setAmount ] = useState<number>(1);
 
-  const handlerTabChange = (number :number) => {
-    setTab(number);
+  const dispatch = useDispatch();
+  const navi = useNavigate();
+
+  const handleAmount = (count :number) => {
+    if(count <= 0) return;
+    setAmount(count);
   }
+
+  const addProduct = () => {
+    if(!product) return;
+
+    const cart :cartType= {
+      id : product.id,
+      title : product.title,
+      amount,
+      price : product.price
+    };
+    
+    dispatch(addCart({cart : cart}));
+
+    const addProduct = confirm("장바구니에 상품이 추가되었습니다.\n장바구니로 이동하시겠습니까?")
+    if(addProduct) navi("/cart");
+  }
+
+  const handlerTabChange = (number :number) => setTab(number);
 
   useEffect(() => {
     if(!id) return;
-    const productFound :shoesType|undefined = shoesData.find(item => item.id === Number(id));
+    const productFound :productsType|undefined = productsData.find(item => item.id === Number(id));
     setProduct(productFound);
   }, [id]);
 
@@ -36,6 +61,14 @@ export const Detail = () => {
               <h4>{ product.title }</h4>
               <p>{ product.content }</p>
               <p>{ addComma(product.price) }원</p>
+              <div className="detail-cartBox">
+                <div className="detail-cart-amount">
+                  <button onClick={() => handleAmount(amount - 1)}>-</button>
+                  <p>{ amount }</p>
+                  <button onClick={() => handleAmount(amount + 1)}>+</button>
+                </div>
+                <button onClick={() => addProduct()}>장바구니</button>
+              </div>
               <button className="btn btn-danger">주문하기</button> 
             </div>
           </div>
@@ -61,7 +94,7 @@ export const Detail = () => {
   )
 }
 
-const TabContent = (props: { tab :number, shoes: shoesType }) :JSX.Element => {
+const TabContent = (props: { tab :number, shoes: productsType }) :JSX.Element => {
 
   let [ fade, setFade ] = useState<string>("");
 

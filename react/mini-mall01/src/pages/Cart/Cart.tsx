@@ -5,7 +5,7 @@ import { cartData } from "../../assets/data/cart";
 import { cartType } from "../../types/types";
 import { addComma } from "../../assets/common/common";
 import { RootState } from "../../store/store";
-import { changeAmount, insCart } from "./cartSlice";
+import { changeAmount, cartList } from "./cartSlice";
 
 export const Cart = () => {
 
@@ -30,8 +30,8 @@ export const Cart = () => {
   }
 
   useEffect(() => {
-    if(redux.cart.length === 0) {
-      dispatch(insCart({cart : cartData}));
+    if(redux.cart.length === 0 || redux.cart === undefined) {
+      dispatch(cartList({cart : cartData}));
       setCart([ ...cartData ]);
     }
     else setCart([ ...redux.cart ]);

@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { shoesType } from "../types/types";
 import { cart } from '../pages/Cart/cartSlice.ts';
+import { products } from "../pages/Products/ProductsSlice.ts";
 
 
 let user = createSlice({
@@ -15,24 +15,11 @@ let stock = createSlice({
     reducers: {}
 })
 
-let shoes = createSlice({
-    name: 'shoes',
-    initialState: {} as shoesType,
-    reducers: {}
-})
-
-let shoesList = createSlice({
-    name: 'shoesList',
-    initialState: [] as shoesType[],
-    reducers: {}
-})
-
 export const store = configureStore(({
     reducer : {
         user: user.reducer,
         stock: stock.reducer,
-        shoes: shoes.reducer,
-        shoesList: shoesList.reducer,
+        products : products.reducer,
         cart: cart.reducer
     }
 }));

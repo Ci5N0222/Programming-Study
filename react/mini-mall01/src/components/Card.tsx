@@ -1,8 +1,8 @@
 import { addComma } from "../assets/common/common"
 import { useNavigate } from "react-router-dom";
-import { shoesType } from "../types/types";
+import { productsType } from "../types/types";
 
-export const Card = (props :{item :shoesType, key :number}) => {
+export const Card = (props :{item :productsType, key :number}) => {
 
   const navi = useNavigate();
 

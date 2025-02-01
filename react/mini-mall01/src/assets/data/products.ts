@@ -1,6 +1,6 @@
-import { shoesType } from "../../types/types";
+import { productsType } from "../../types/types";
 
-export const shoesData :shoesType[] = [
+export const productsData :productsType[] = [
     {
       id : 0,
       title : "White and Black",

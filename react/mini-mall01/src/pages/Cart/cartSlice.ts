@@ -5,8 +5,11 @@ export const cart = createSlice({
     name: 'cart',
     initialState: [] as cartType[],
     reducers: {
-        insCart(state, action: PayloadAction<{ cart :cartType[] }>) {
-            return [ ...action.payload.cart ];
+        cartList(state, action: PayloadAction<{ cart :cartType[] }>) {
+            return state = [ ...action.payload.cart ];
+        },
+        addCart(state, action : PayloadAction<{ cart :cartType }>){
+            return state = [ ...state, action.payload.cart];
         },
         changeAmount(state, action: PayloadAction<{ id :number, amount :number }>){
             // 1번째 파라미터로 들어온 id가 같은 상품의 수량을 2번째 파라미터로 들어온 amount로 변경
@@ -20,4 +23,4 @@ export const cart = createSlice({
 });
 
 // export state function 
-export let { insCart, changeAmount } = cart.actions;
+export let { cartList, addCart, changeAmount } = cart.actions;

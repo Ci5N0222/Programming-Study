@@ -5,7 +5,7 @@
 //     price :number,
 // }
 
-export type shoesType = {
+export type productsType = {
     readonly id :number,    // readonly 수정 불가능
     title :string,
     content :string,

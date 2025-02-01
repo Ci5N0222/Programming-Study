@@ -1,26 +1,31 @@
 import { useEffect, useState } from "react"
-import { shoesData } from "../../assets/data/shoes"
+import { productsData } from "../../assets/data/products"
 import { Card } from "../../components/Card";
 import { getReq } from "../../assets/api/api";
-import { shoesType } from "../../types/types";
+import { productsType } from "../../types/types";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 export const Products = () => {
-  const [shoes, setShoes] = useState<shoesType[]>([]);
+  const [products, setProducts] = useState<productsType[]>([]);
   const [count, setCount] = useState<number>(2);
+
+  const store = useSelector((state : RootState) => state);
 
   const getData = async() => {
     if(count > 3) return alert("상품이 더이상 없습니다.");
     
-    const data :shoesType[] = await getReq(`https://codingapple1.github.io/shop/data${count}.json`);
+    const data :productsType[] = await getReq(`https://codingapple1.github.io/shop/data${count}.json`);
     if(data === null) return;
     else {
-      setShoes(prev => [ ...prev, ...data ] );
+      setProducts(prev => [ ...prev, ...data ] );
       setCount(prev => prev = prev+1);
     }
   }
 
   useEffect(() => {
-    setShoes([ ...shoesData ]);
+    if(store.products) setProducts([ ...store.products ])
+    else setProducts([ ...productsData ]);
   }, [])
 
   return (
@@ -31,7 +36,7 @@ export const Products = () => {
       <div className='products'>
         <div className='row'>
           {
-            shoes.map((item :shoesType) => {
+            products.map((item :productsType) => {
               return(
                   <Card item={item} key={item.id} />
               )
