@@ -3,14 +3,16 @@ import { productsData } from "../../assets/data/products"
 import { Card } from "../../components/Card";
 import { getReq } from "../../assets/api/api";
 import { productsType } from "../../types/types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import { productsList } from "./ProductsSlice";
 
 export const Products = () => {
   const [products, setProducts] = useState<productsType[]>([]);
   const [count, setCount] = useState<number>(2);
 
   const store = useSelector((state : RootState) => state);
+  const dispatch = useDispatch();
 
   const getData = async() => {
     if(count > 3) return alert("상품이 더이상 없습니다.");
@@ -24,8 +26,11 @@ export const Products = () => {
   }
 
   useEffect(() => {
-    if(store.products) setProducts([ ...store.products ])
-    else setProducts([ ...productsData ]);
+    if(store.products.length === 0 || store.products === undefined) {
+      setProducts([ ...productsData ]);
+      dispatch(productsList({ products : productsData }));
+    }
+    else setProducts([ ...store.products ]); 
   }, [])
 
   return (
