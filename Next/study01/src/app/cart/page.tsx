@@ -5,11 +5,12 @@ export default function Cart() {
 
   return (
     <div>
+      <Banner card={ "삼성카드" }/>
       <h4 className={ styles.title }>Cart</h4>
       {
-        products.map(item => {
+        products.map((item :CartItemType) => {
           return (
-            <CartItem product={ item }/>
+            <CartItem product={ item }/> 
           )
         })
       }
@@ -24,5 +25,11 @@ function CartItem(props: {product : CartItemType}) {
       <p>${ props.product.price * props.product.amount }</p>
       <p>{ props.product.amount }개</p>
     </div>
+  )
+}
+
+function Banner(props : { card : string }) {
+  return (
+    <div className={ styles.banner }> { props.card } 결제 행사중 </div>
   )
 }
