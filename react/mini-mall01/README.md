@@ -90,4 +90,21 @@ createRoot(document.getElementById('root')!).render(
 ```bash
 /** Install **/
 $ npm install react-query
+
+// 1. main.tsx에 임포트 후 사용
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+const queryClient = new QueryClient()
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <QueryClientProvider client={ queryClient }>
+      <Provider store={ store }>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </QueryClientProvider>
+  </StrictMode>
+)
 ```

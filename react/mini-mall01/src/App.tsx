@@ -8,7 +8,7 @@ import { Error } from './pages/Error/Error'
 import { Detail } from './pages/Products/Detail/Detail'
 import { Event } from './pages/Event/Event'
 import { Cart } from './pages/Cart/Cart'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { cartList } from './pages/Cart/cartSlice'
 import { cartData } from './assets/data/cart'
@@ -19,21 +19,27 @@ import { useQuery } from 'react-query'
 
 function App() {
 
+  const [ isLogin, setIsLogin ] = useState(false);
+
   const dispatch = useDispatch();
 
   /**
    * React-query
+   *  - 실시간 데이터가 필요한 곳에서 유용
    *  장점
    *    1. 성공 / 실패 / 로딩중 쉽게 파악 가능
    *    2. 알아서 ajax 재요청 함
    *    3. 실패시 재요청 함
    *    4. ajax로 가져온 결과는 state 공유 필요없음 
    */
-  const apiResult = useQuery('작명', () => {
+  const login = useQuery('login', () => {
     return axios.get('https://codingapple1.github.io/userdata.json').then(res => {
+      if(res.data.name !== undefined || res.data.name !== null) setIsLogin(true);
+      else setIsLogin(false);
       return res.data;
     });
   });
+
 
   useEffect(() => {
     dispatch(productsList({products : productsData}));
@@ -43,7 +49,7 @@ function App() {
   return (
     <>
       <div>
-        <Header />
+        <Header isLogin={ isLogin } login={ login } />
         <Routes>
           <Route path="/" element={ <Home /> } />
           <Route path="/products" element={ <Products /> } />

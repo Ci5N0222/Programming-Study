@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 // import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function Header() {
+function Header(props : { isLogin :boolean, login :any }) {
 
   let navi = useNavigate();
 
@@ -36,8 +36,20 @@ function Header() {
 
           </Nav>
           <div className='sign'>
-            <Nav.Link href="#sign-in">sign-in</Nav.Link>
-            <Nav.Link href="#sign-up">sign-up</Nav.Link>
+            {
+              props.isLogin === false?
+              <>
+                <Nav.Link href="#sign-in">sign-in</Nav.Link>
+                <Nav.Link href="#sign-up">sign-up</Nav.Link>
+              </>
+              :
+              <>
+                { props.login.data && <span>{ props.login.data.name }</span> }
+                { props.login.isLoading && <span>loading ...</span> }
+                { props.login.error && <span>login error ...</span> }
+              </>
+            }
+            
           </div>
         </Navbar.Collapse>
       </Container>
