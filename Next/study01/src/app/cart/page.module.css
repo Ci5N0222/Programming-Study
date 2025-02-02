@@ -6,6 +6,12 @@
     line-height: 0px;
 } 
 
+.cart_item > p {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
 .title {
     text-align: center;
     margin-top: 150px;
