@@ -1,11 +1,25 @@
 .food {
-    margin: 20px auto;
-    width: 200px;
+    margin: 15px auto;
+    width: 250px;
     background: white;
     color: black;
     padding: 20px;
     border-radius: 5px;
+    display: flex;
 } 
+
+.image {
+    flex: 1;
+    border: 1px solid black;
+}
+
+.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .title {
     text-align: center;
