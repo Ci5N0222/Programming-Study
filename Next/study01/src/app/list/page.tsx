@@ -8,9 +8,13 @@ export default function List() {
 
   const [ items, setItems ] = useState<ProductsType[]>([]);
 
-  const handleLikes = (id :number) => {
+  const handleLikes = (id :number, symbol :string) => {
     setItems(prev => {
-      return prev.map(item => item.id === id? { ... item , likes : item.likes + 1 }: item);
+      if(symbol === "-") {
+        return prev.map(item => item.id === id? { ... item , likes : item.likes - 1 }: item);
+      } else {
+        return prev.map(item => item.id === id? { ... item , likes : item.likes + 1 }: item);
+      }
     });
   }
 
@@ -32,8 +36,9 @@ export default function List() {
                 <h4>{ item.title } </h4>
                 <p>${ item.price }</p>
                 <div className={ styles.likes }>
+                  <button onClick={ () => handleLikes(item.id, "-") }> - </button>
                   <span>{ item.likes }</span>
-                  <button onClick={ () => handleLikes(item.id) }> + </button>
+                  <button onClick={ () => handleLikes(item.id, "+" ) }> + </button>
                 </div>
               </div>
             </div>

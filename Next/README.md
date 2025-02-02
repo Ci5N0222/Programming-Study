@@ -1,7 +1,7 @@
 ## Next.js Study
 
 ### Create Next Project
-`$ npx create-next-app@14`
+`$ npx create-next-app@latest`
 
 ### Start Next Project
 `$ npm run dev`
