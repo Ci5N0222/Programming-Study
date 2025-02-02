@@ -11,6 +11,7 @@ import { productsList } from './pages/Products/ProductsSlice'
 import { productsData } from './assets/data/products'
 import axios from 'axios'
 import { useQuery } from 'react-query'
+import useUserName from './hooks/user'
 
 // lazy() : 필요해질 때 임포트를 진행
 // 메인페이지에서 먼저 로드할 필요 없는 컴포넌트( 자원 절약 )
@@ -41,7 +42,6 @@ function App() {
     });
   });
 
-
   useEffect(() => {
     dispatch(productsList({products : productsData}));
     dispatch(cartList({cart : cartData}));
@@ -51,29 +51,29 @@ function App() {
     <>
       <div>
         <Header isLogin={ isLogin } login={ login } />
-        <Routes>
-          <Suspense fallback={ <div> Loading ... </div> }>
-            <Route path="/" element={ <Home /> } />
-            <Route path="/products" element={ <Products /> } />
-            <Route path='/products/:id' element={<Detail />} />
-            <Route path="/about" element={ <About /> } />
+        <Suspense fallback={ <div> Loading ... </div> }>
+          <Routes>
+              <Route path="/" element={ <Home /> } />
+              <Route path="/products" element={ <Products /> } />
+              <Route path='/products/:id' element={<Detail />} />
+              <Route path="/about" element={ <About /> } />
 
-            {/* 
-                Nested Routes 
-                  - 태그 안에 태그( 라우트 안에 라우트 )
-                  - 내부 어디에 보여줄지 작성해야 함
-            */}
-            <Route path="/event" element={ <Event /> } >
-              <Route path="one" element={ <p>첫 주문시 양배추즙 서비스</p> } />
-              <Route path="two" element={ <p>생일기념 쿠폰 받기</p> } />
-            </Route>
+              {/* 
+                  Nested Routes 
+                    - 태그 안에 태그( 라우트 안에 라우트 )
+                    - 내부 어디에 보여줄지 작성해야 함
+              */}
+              <Route path="/event" element={ <Event /> } >
+                <Route path="one" element={ <p>첫 주문시 양배추즙 서비스</p> } />
+                <Route path="two" element={ <p>생일기념 쿠폰 받기</p> } />
+              </Route>
 
-            <Route path="cart" element={ <Cart /> } />
+              <Route path="cart" element={ <Cart /> } />
 
-            {/* Error Page */}
-            <Route path="*" element={ <Error /> } />
-          </Suspense>
-        </Routes>
+              {/* Error Page */}
+              <Route path="*" element={ <Error /> } />
+          </Routes>
+        </Suspense>
       </div>
     </>
   )
