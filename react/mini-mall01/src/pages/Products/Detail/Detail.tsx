@@ -124,3 +124,5 @@ const TabContent = (props: { tab :number, shoes: productsType }) :JSX.Element =>
   )
   
 }
+
+export default Detail;

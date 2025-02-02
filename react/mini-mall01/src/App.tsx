@@ -1,14 +1,9 @@
 import './App.css'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import Header from './components/Header'
 import Home from './pages/Home/Home'
 import { Routes, Route } from 'react-router-dom'
 import { Products } from './pages/Products/Products'
-import { About } from './pages/About/About'
-import { Error } from './pages/Error/Error'
-import { Detail } from './pages/Products/Detail/Detail'
-import { Event } from './pages/Event/Event'
-import { Cart } from './pages/Cart/Cart'
-import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { cartList } from './pages/Cart/cartSlice'
 import { cartData } from './assets/data/cart'
@@ -17,10 +12,16 @@ import { productsData } from './assets/data/products'
 import axios from 'axios'
 import { useQuery } from 'react-query'
 
+// lazy() : 필요해질 때 임포트를 진행
+// 메인페이지에서 먼저 로드할 필요 없는 컴포넌트( 자원 절약 )
+const Detail = lazy(() => import('./pages/Products/Detail/Detail'));
+const Event = lazy(() => import('./pages/Event/Event'));
+const Cart = lazy(() => import('./pages/Cart/Cart'));
+const About = lazy(() => import('./pages/About/About'));
+const Error = lazy(() => import('./pages/Error/Error'));
+
 function App() {
-
   const [ isLogin, setIsLogin ] = useState(false);
-
   const dispatch = useDispatch();
 
   /**
@@ -51,25 +52,27 @@ function App() {
       <div>
         <Header isLogin={ isLogin } login={ login } />
         <Routes>
-          <Route path="/" element={ <Home /> } />
-          <Route path="/products" element={ <Products /> } />
-          <Route path='/products/:id' element={<Detail />} />
-          <Route path="/about" element={ <About /> } />
+          <Suspense fallback={ <div> Loading ... </div> }>
+            <Route path="/" element={ <Home /> } />
+            <Route path="/products" element={ <Products /> } />
+            <Route path='/products/:id' element={<Detail />} />
+            <Route path="/about" element={ <About /> } />
 
-          {/* 
-              Nested Routes 
-                - 태그 안에 태그( 라우트 안에 라우트 )
-                - 내부 어디에 보여줄지 작성해야 함
-          */}
-          <Route path="/event" element={ <Event /> } >
-            <Route path="one" element={ <p>첫 주문시 양배추즙 서비스</p> } />
-            <Route path="two" element={ <p>생일기념 쿠폰 받기</p> } />
-          </Route>
+            {/* 
+                Nested Routes 
+                  - 태그 안에 태그( 라우트 안에 라우트 )
+                  - 내부 어디에 보여줄지 작성해야 함
+            */}
+            <Route path="/event" element={ <Event /> } >
+              <Route path="one" element={ <p>첫 주문시 양배추즙 서비스</p> } />
+              <Route path="two" element={ <p>생일기념 쿠폰 받기</p> } />
+            </Route>
 
-          <Route path="cart" element={ <Cart /> } />
+            <Route path="cart" element={ <Cart /> } />
 
-          {/* Error Page */}
-          <Route path="*" element={ <Error /> } />
+            {/* Error Page */}
+            <Route path="*" element={ <Error /> } />
+          </Suspense>
         </Routes>
       </div>
     </>
