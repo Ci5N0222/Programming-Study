@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb'
+import { Collection, Db, MongoClient } from 'mongodb'
 
 // .env.local 파일 만들어서 사용
 const url = process.env.NEXT_PUBLIC_MONGO_URI as string;
@@ -19,7 +19,13 @@ if (process.env.NODE_ENV === "development") {
     connectDB = new MongoClient(url).connect();
 }
 
-export { connectDB }
+const getConnect = async (db :string, repo :string)  :Promise<Collection> => {
+    const data :Db = (await connectDB).db(db);
+    return data.collection(repo);
+}
+
+
+export { connectDB, getConnect }
 
 
   
