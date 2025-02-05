@@ -18,7 +18,15 @@ export default async function List() {
           return (
             <div className={ styles.item } key={ i }>
               <Link href={ `/board/${item._id}` }>{ item.title }</Link>
-              <Link href={ `/edit/${item._id}` }> ✏️</Link>
+              <Link href={ `/edit/${item._id}` }> ✏️ </Link>
+              <span onClick={ () => {
+                fetch('/api/edit', {
+                  method : "POST"
+                }).then((res) => {
+
+                })
+              }
+              }> 🗑️ </span>
               <ListItem />
               <p>{ item.content }</p>
             </div>
