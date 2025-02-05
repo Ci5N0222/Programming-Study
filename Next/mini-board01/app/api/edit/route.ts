@@ -1,4 +1,5 @@
 import { getConnect } from "@/util/database";
+import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
 // DB Connect
@@ -11,24 +12,26 @@ export async function GET(req :NextRequest) {
 
 // POST 요청 핸들러
 export async function POST(req :NextRequest) {
-
     let result = {
         result : "fail",
         msg : "error",
         values : {}
     }
 
-    // form 태그를 사용하여 데이터를 보냈을 때
     const formData = await req.formData();
+    const _id = formData.get("_id");
+    if(typeof _id !== "string") return NextResponse.json(result, { status: 404 });;
+
     const title = formData.get("title");
     const content = formData.get("content");
+    const objectId = new ObjectId(_id);
 
     if(title === "") return NextResponse.json("제목을 입력하세요.");
     if(content === "") return NextResponse.json("내용을 입력하세요.");
 
     try {
-        // insertOne : MongoDB document insert function
-        db.insertOne({ title, content });
+        const parameter = { title, content }
+        await db.updateOne({ _id : objectId }, {$set : parameter});
 
         result.result = "ok";
         result.msg = "success";

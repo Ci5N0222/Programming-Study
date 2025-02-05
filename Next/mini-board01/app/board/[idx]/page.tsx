@@ -1,5 +1,4 @@
 import { connectDB } from '@/util/database';
-import styles from './page.module.css'
 import { PostType } from '@/types/types';
 import { ObjectId } from 'mongodb';
 
