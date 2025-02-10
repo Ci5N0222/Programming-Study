@@ -1,4 +1,5 @@
 import { getConnect } from "@/util/database";
+import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
 // DB Connect
@@ -54,4 +55,17 @@ export async function PUT(req :NextRequest) {
     } catch(e) {
         return NextResponse.json(result, { status: 500 });
     }
+}
+
+export async function DELETE(req: NextRequest) {
+    const body = await req.json();
+    console.log("req ===== ", body);
+    try {
+        db.deleteOne({ _id : new ObjectId(body._id) });
+        return NextResponse.json({ message: "삭제 성공" }, { status: 200 });
+        
+    } catch(e) {
+        return NextResponse.json({ message: "삭제 실패" }, { status: 500 });
+    }
+    
 }
